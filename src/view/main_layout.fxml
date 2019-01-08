@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:controller="controller.MainController"
+        maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="chose_path_button" onAction="#handleButtonClick" layoutX="21.0" layoutY="54.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="88.0" text="Open" />
+      <TextField fx:id="path_field" layoutX="121.0" layoutY="54.0" prefHeight="27.0" prefWidth="459.0" />
+      <ListView fx:id="date_list_view" layoutX="21.0" layoutY="104.0" prefHeight="273.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
