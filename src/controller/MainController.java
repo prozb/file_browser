@@ -2,10 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import modell.Record;
 import view.Constants;
@@ -15,9 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
+    @FXML public TableView prescription_table_view;
     @FXML private Button chose_path_button;
     @FXML private TextField path_field;
     @FXML private ListView<String> date_list_view;
+//    @FXML private TableV
     private List<Record> records;
 
     public void initialize(){
@@ -28,7 +27,7 @@ public class MainController {
         date_list_view.setOnMouseClicked(event ->
         {
             System.out.println("selected: " + date_list_view.getSelectionModel().getSelectedIndex());
-            //TODO
+            // TODO: 09.01.19 show items in table view
         });
         System.out.println("MainController initalization");
     }
@@ -89,8 +88,6 @@ public class MainController {
                 //save data to object
                 Record record = new Record(data[0], data[1], data[2], data[3]);
                 records.add(record);
-
-                System.out.println("added: " + record);
             }
         }
     }
