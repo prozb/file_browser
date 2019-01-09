@@ -25,6 +25,11 @@ public class MainController {
 
         //setting to single selection mode
         date_list_view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        date_list_view.setOnMouseClicked(event ->
+        {
+            System.out.println("selected: " + date_list_view.getSelectionModel().getSelectedIndex());
+            //TODO
+        });
         System.out.println("MainController initalization");
     }
 
@@ -46,8 +51,6 @@ public class MainController {
             try {
                 processFile(file);
                 showDataInListView(date_list_view, records);
-                //TODO: show file dates in listview
-                //TODO: show file prescriptions in tableview
             } catch (IOException e) {
                 path_field.setText(Constants.error + ": " + Constants.file_not_found);
             }

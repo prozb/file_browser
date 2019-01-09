@@ -11,7 +11,7 @@ public class Record {
     private int recordId;
 
     public Record(String date, String drugName, String count, String price){
-        this.recordId = ++id;
+        this.recordId = id++;
 
         this.count    = count;
         this.drugName = drugName;
