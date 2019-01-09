@@ -15,7 +15,7 @@
             <Image url="@../../res/images/reporting_image.png" />
          </image>
       </ImageView>
-      <TableView visible="false" fx:id="prescription_table_view" layoutX="147.0" layoutY="159.0" prefHeight="273.0" prefWidth="428.0">
+      <TableView fx:id="prescription_table_view" layoutX="147.0" layoutY="159.0" prefHeight="273.0" prefWidth="428.0" visible="false">
         <columns>
           <TableColumn prefWidth="89.0" text="Date" />
           <TableColumn prefWidth="146.0" text="Drug" />
@@ -23,5 +23,7 @@
           <TableColumn prefWidth="99.0" text="Price in Euro" />
         </columns>
       </TableView>
+      <Label fx:id="surgery_label" layoutX="21.0" layoutY="133.0" prefHeight="17.0" prefWidth="109.0" text="Surgery List" visible="false"/>
+      <Label fx:id="prescription_label" layoutX="147.0" layoutY="133.0" prefHeight="17.0" prefWidth="134.0" text="List of prescriptions" visible="false"/>
    </children>
 </AnchorPane>

@@ -13,10 +13,12 @@ import java.util.List;
 
 public class MainController {
     @FXML public TableView prescription_table_view;
+    @FXML public Label surgery_label;
+    @FXML public Label prescription_label;
     @FXML private Button chose_path_button;
     @FXML private TextField path_field;
     @FXML private ListView<String> date_list_view;
-//    @FXML private TableV
+
     private List<Record> records;
 
     public void initialize(){
@@ -28,6 +30,7 @@ public class MainController {
         {
             System.out.println("selected: " + date_list_view.getSelectionModel().getSelectedIndex());
             // TODO: 09.01.19 show items in table view
+            // TODO: 09.01.19 create two lables abow the table view
         });
         System.out.println("MainController initalization");
     }
@@ -50,11 +53,15 @@ public class MainController {
             try {
                 processFile(file);
                 showDataInListView(date_list_view, records);
+
+                prescription_label.setVisible(true);
+                surgery_label.setVisible(true);
+                prescription_table_view.setVisible(true);
             } catch (IOException e) {
                 path_field.setText(Constants.error + ": " + Constants.file_not_found);
             }
         }else{
-            path_field.setText(Constants.error + ": " + Constants.file_not_found);
+            path_field.setText(Constants.choose_file);
         }
     }
 
