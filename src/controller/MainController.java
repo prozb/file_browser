@@ -23,9 +23,9 @@ public class MainController {
     public void initialize(){
         this.records = new ArrayList<>();
 
-        System.out.println("MainController initalization");
-        date_list_view.getItems().addAll("LOL", "LKE", "EASY", "EASY", "EASY", "EASY");
+        //setting to single selection mode
         date_list_view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        System.out.println("MainController initalization");
     }
 
     public void openFileDialog(ActionEvent actionEvent) {
@@ -45,6 +45,7 @@ public class MainController {
             path_field.setText(file.getAbsolutePath());
             try {
                 processFile(file);
+                showDataInListView(date_list_view, records);
                 //TODO: show file dates in listview
                 //TODO: show file prescriptions in tableview
             } catch (IOException e) {
@@ -55,6 +56,22 @@ public class MainController {
         }
     }
 
+    /**
+     * Shows records in list view
+     * @param listView list view to show records
+     * @param records records to show
+     */
+    private void showDataInListView(ListView<String> listView, List<Record> records){
+        for(Record record : records){
+            listView.getItems().add(record.getDate());
+        }
+    }
+
+    /**
+     * Processing / parsing opened file and saving data records in records array list
+     * @param file opened file
+     * @throws IOException
+     */
     private void processFile(File file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
