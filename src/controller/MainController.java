@@ -67,7 +67,7 @@ public class MainController {
 
             if(data.length == 4){
                 //save data to object
-                Record record = new Record(data[0], data[1], data[2], data[3git ]);
+                Record record = new Record(data[0], data[1], data[2], data[3]);
                 records.add(record);
 
                 System.out.println("added: " + record);
