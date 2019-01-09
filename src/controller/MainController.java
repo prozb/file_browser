@@ -1,8 +1,6 @@
 package controller;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
@@ -10,16 +8,10 @@ import modell.Record;
 import view.Constants;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class MainController {
-    @FXML public TableView prescription_table_view;
+    @FXML public TableView<Record> prescription_table_view;
     @FXML public Label surgery_label;
     @FXML public Label prescription_label;
     @FXML private Button chose_path_button;
@@ -33,26 +25,26 @@ public class MainController {
 
         //setting to single selection mode
         date_list_view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        date_list_view.setOnMouseClicked(event ->
+        date_list_view.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
         {
-            int index = date_list_view.getSelectionModel().getSelectedIndex();
-            System.out.println("selected: " + index);
-
-            Record selected      = records.get(index);
+//            System.out.println("selected val: " + newValue);
             List<Record> choosen = new ArrayList<>();
 
             for(Record record : records){
-                if(record.getDate().equals(selected.getDate())){
+                if(record.getDate().equals(newValue)){
                     choosen.add(record);
                 }
             }
 
             showDataInTable(prescription_table_view, choosen);
         });
-        System.out.println("MainController initalization");
+//        System.out.println("MainController initalization");
     }
 
-    public void openFileDialog(ActionEvent actionEvent) {
+    /**
+     * Opening file dialog
+     */
+    public void openFileDialog() {
         System.out.println("FileDialog opened");
 
         //creating extention filter
@@ -98,9 +90,11 @@ public class MainController {
      * @param records records to show
      */
     private void showDataInListView(ListView<String> listView, List<Record> records){
+        SortedSet<String> dates = new TreeSet<>();
         for(Record record : records){
-            listView.getItems().add(record.getDate());
+            dates.add(record.getDate());
         }
+        listView.getItems().addAll(dates);
     }
 
     /**
