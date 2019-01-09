@@ -11,9 +11,9 @@ import java.io.*;
 import java.util.*;
 
 public class MainController {
-    @FXML public TableView<Record> prescription_table_view;
-    @FXML public Label surgery_label;
-    @FXML public Label prescription_label;
+    @FXML private TableView<Record> prescription_table_view;
+    @FXML private Label surgery_label;
+    @FXML private Label prescription_label;
     @FXML private Button chose_path_button;
     @FXML private TextField path_field;
     @FXML private ListView<String> date_list_view;
