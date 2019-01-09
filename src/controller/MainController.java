@@ -10,8 +10,13 @@ import modell.Record;
 import view.Constants;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class MainController {
     @FXML public TableView prescription_table_view;
@@ -30,10 +35,19 @@ public class MainController {
         date_list_view.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         date_list_view.setOnMouseClicked(event ->
         {
-            System.out.println("selected: " + date_list_view.getSelectionModel().getSelectedIndex());
-            // TODO: 09.01.19 show items in table view
-//            addRecordTableView(records.get(0));
-            // TODO: 09.01.19 create two lables abow the table view
+            int index = date_list_view.getSelectionModel().getSelectedIndex();
+            System.out.println("selected: " + index);
+
+            Record selected      = records.get(index);
+            List<Record> choosen = new ArrayList<>();
+
+            for(Record record : records){
+                if(record.getDate().equals(selected.getDate())){
+                    choosen.add(record);
+                }
+            }
+
+            showDataInTable(prescription_table_view, choosen);
         });
         System.out.println("MainController initalization");
     }
@@ -68,9 +82,14 @@ public class MainController {
         }
     }
 
-    private void showDataInTable(FXCollections table_observer, List<Record> records){
-        if(table_observer != null && records != null){
-            addRecordTableView(records.get(0));
+    private void showDataInTable(TableView<Record> prescription_table_view, List<Record> records){
+        ObservableList<Record> data = prescription_table_view.getItems();
+        data.clear();
+
+        if(records != null){
+            for(Record record : records) {
+                addRecordTableView(record);
+            }
         }
     }
     /**
