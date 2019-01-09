@@ -1,22 +1,27 @@
 package modell;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Record {
     //records id
     private static int id = 0;
-
-    private String drugName;
-    private String date;
-    private String count;
-    private String price;
     private int recordId;
 
+    private final SimpleStringProperty date     = new SimpleStringProperty("");
+    private final SimpleStringProperty drugName = new SimpleStringProperty("");
+    private final SimpleStringProperty count    = new SimpleStringProperty("");
+    private final SimpleStringProperty price    = new SimpleStringProperty("");
+
+    public Record(){
+        this("", "", "", "");
+    }
     public Record(String date, String drugName, String count, String price){
         this.recordId = id++;
 
-        this.count    = count;
-        this.drugName = drugName;
-        this.price    = price;
-        this.date     = date;
+        setCount(count);
+        setDrugName(drugName);
+        setPrice(price);
+        setDate(date);
     }
 
     public int getRecordId(){
@@ -24,23 +29,39 @@ public class Record {
     }
 
     public String getDate(){
-        return date;
+        return  date.get();
     }
 
     public String getDrugName(){
-        return drugName;
+        return drugName.get();
     }
 
     public String getCount(){
-        return count;
+        return count.get();
     }
 
     public String  getPrice(){
-        return price;
+        return price.get();
     }
 
     @Override
     public String toString() {
         return drugName + " | " + date + " | "  + count + " | " + price;
+    }
+
+    public void setDrugName(String drugName) {
+        this.drugName.set(drugName);
+    }
+
+    public void setCount(String count) {
+        this.count.set(count);
+    }
+
+    public void setPrice(String price) {
+        this.price.set(price);
+    }
+
+    public void setDate(String date) {
+        this.date.set(date);
     }
 }

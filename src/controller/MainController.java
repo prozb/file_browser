@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -30,6 +32,7 @@ public class MainController {
         {
             System.out.println("selected: " + date_list_view.getSelectionModel().getSelectedIndex());
             // TODO: 09.01.19 show items in table view
+//            addRecordTableView(records.get(0));
             // TODO: 09.01.19 create two lables abow the table view
         });
         System.out.println("MainController initalization");
@@ -65,6 +68,11 @@ public class MainController {
         }
     }
 
+    private void showDataInTable(FXCollections table_observer, List<Record> records){
+        if(table_observer != null && records != null){
+            addRecordTableView(records.get(0));
+        }
+    }
     /**
      * Shows records in list view
      * @param listView list view to show records
@@ -97,5 +105,10 @@ public class MainController {
                 records.add(record);
             }
         }
+    }
+
+    private void addRecordTableView(Record record){
+        ObservableList<Record> data = prescription_table_view.getItems();
+        data.add(record);
     }
 }

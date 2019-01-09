@@ -5,6 +5,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import modell.Record?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <Button fx:id="chose_path_button" layoutX="21.0" layoutY="88.0" mnemonicParsing="false" onAction="#openFileDialog" prefHeight="27.0" prefWidth="109.0" text="Open" />
@@ -17,11 +21,24 @@
       </ImageView>
       <TableView fx:id="prescription_table_view" layoutX="147.0" layoutY="159.0" prefHeight="273.0" prefWidth="428.0" visible="false">
         <columns>
-          <TableColumn prefWidth="89.0" text="Date" />
-          <TableColumn prefWidth="146.0" text="Drug" />
-          <TableColumn prefWidth="93.0" text="Count" />
-          <TableColumn prefWidth="99.0" text="Price in Euro" />
+          <TableColumn prefWidth="89.0" text="Date">
+             <cellValueFactory><PropertyValueFactory property="date"/></cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="146.0" text="Drug">
+             <cellValueFactory><PropertyValueFactory property="drugName"/></cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="93.0" text="Count">
+             <cellValueFactory><PropertyValueFactory property="count"/></cellValueFactory>
+          </TableColumn>
+          <TableColumn prefWidth="99.0" text="Price in Euro">
+             <cellValueFactory><PropertyValueFactory property="price"/></cellValueFactory>
+          </TableColumn>
         </columns>
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+               <!--<Record date="12.12.12" drugName="adasd" count="123" price="123"/>-->
+            </FXCollections>
+         </items>
       </TableView>
       <Label fx:id="surgery_label" layoutX="21.0" layoutY="133.0" prefHeight="17.0" prefWidth="109.0" text="Surgery List" visible="false"/>
       <Label fx:id="prescription_label" layoutX="147.0" layoutY="133.0" prefHeight="17.0" prefWidth="134.0" text="List of prescriptions" visible="false"/>
