@@ -10,6 +10,11 @@ import view.Constants;
 import java.io.*;
 import java.util.*;
 
+/**
+ * @author p.rozbytskyi
+ * @version 1.0.0
+ * Class manages GUI
+ */
 public class MainController {
     @FXML private TableView<Record> prescription_table_view;
     @FXML private Label surgery_label;
@@ -91,6 +96,8 @@ public class MainController {
      */
     private void showDataInListView(ListView<String> listView, List<Record> records){
         SortedSet<String> dates = new TreeSet<>();
+        listView.getItems().clear();
+        dates.clear();
         for(Record record : records){
             dates.add(record.getDate());
         }

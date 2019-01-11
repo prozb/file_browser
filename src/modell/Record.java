@@ -2,6 +2,11 @@ package modell;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * @author p.rozbytskyi
+ * @version 1.0.0
+ * Class describes object model
+ */
 public class Record {
     //records id
     private static int id = 0;
